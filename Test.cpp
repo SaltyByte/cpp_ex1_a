@@ -82,6 +82,14 @@ TEST_CASE ("Testing throws") { // Testing bad inputs
     CHECK_THROWS(snowman(11111511));
     CHECK_THROWS(snowman(11111151));
     CHECK_THROWS(snowman(11111115));
+    CHECK_THROWS(snowman(11111110));
+    CHECK_THROWS(snowman(11111101));
+    CHECK_THROWS(snowman(11111011));
+    CHECK_THROWS(snowman(11110111));
+    CHECK_THROWS(snowman(11101111));
+    CHECK_THROWS(snowman(11011111));
+    CHECK_THROWS(snowman(10111111));
+    CHECK_THROWS(snowman(01111111));
     CHECK_THROWS(snowman(1));
     CHECK_THROWS(snowman(2));
     CHECK_THROWS(snowman(3));
