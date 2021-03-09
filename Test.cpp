@@ -1,6 +1,7 @@
 #include "doctest.h"
 #include "snowman.hpp"
 #include <stdlib.h>
+#include <array>
 
 
 using namespace std;
@@ -8,50 +9,49 @@ using namespace ariel;
 
 //Hats
 
-#define STRAW_HAT "     \n_===_\n"
-#define MEXICAN_HAT " ___ \n.....\n"
-#define FEZ "  _  \n /_\\ \n"
-#define RUSSIAN_HAT " ___ \n(_*_)\n"
+const string STRAW_HAT = "     \n_===_\n";
+const string MEXICAN_HAT = " ___ \n.....\n";
+const string FEZ = "  _  \n /_\\ \n";
+const string RUSSIAN_HAT = " ___ \n(_*_)\n";
 
 //Noses
 
-#define NORMAL ","
-#define DOT_NOSE "."
-#define LINE "_"
-#define NONE " "
+const string NORMAL = ",";
+const string DOT_NOSE = ".";
+const string LINE = "_";
+const string NONE = " ";
 
 //Eyes
 
-#define DOT_EYE "."
-#define BIGGER_DOT "o"
-#define BIGGEST_DOT "O"
-#define CLOSED "-"
+const string DOT_EYE = ".";
+const string BIGGER_DOT = "o";
+const string BIGGEST_DOT = "O";
+const string CLOSED = "-";
 
 //Left arm
 
-#define NORMAL_LEFT_ARM ">"
-#define UPWARDS_LEFT_ARM "/"
-#define DOWNWARDS_LEFT_ARM "\\"
-#define NONE_ARM " "
+const string NORMAL_LEFT_ARM = "<";
+const string UPWARDS_LEFT_ARM = "\\";
+const string DOWNWARDS_LEFT_ARM = "/";
+const string NONE_ARM = " ";
 
 //Right arm
 
-#define NORMAL_RIGHT_ARM "<"
-#define UPWARDS_RIGHT_ARM "\\"
-#define DOWNWARDS_RIGHT_ARM "/"
-
+const string NORMAL_RIGHT_ARM = ">";
+const string UPWARDS_RIGHT_ARM = "/";
+const string DOWNWARDS_RIGHT_ARM = "\\";
 
 //Torso
 
-#define BUTTONS " : "
-#define VEST "] ["
-#define INWARD_ARMS "> <"
-#define NONE_TORSO_AND_BASE "   "
+const string BUTTONS = " : ";
+const string VEST = "] [";
+const string INWARD_ARMS = "> <";
+const string NONE_TORSO_AND_BASE = "   ";
 
 //Base
 
-#define FEET "\" \""
-#define FLAT "___"
+const string FEET = "\" \"";
+const string FLAT = "___";
 
 string nospaces(string input) {
     erase(input, ' ');
@@ -61,7 +61,7 @@ string nospaces(string input) {
     return input;
 }
 
-TEST_CASE ("Testing throws") {
+TEST_CASE ("Testing throws") { // Testing bad inputs
     CHECK_THROWS(snowman(444444445));
     CHECK_THROWS(snowman(-111111111));
     CHECK_THROWS(snowman(-23232323));
@@ -87,76 +87,79 @@ TEST_CASE ("Testing throws") {
     CHECK_THROWS(snowman(3));
 }
 
-
 TEST_CASE ("Testing all possible outcomes") {
-    for (int a = 0; a < 20000; ++a) { // testing 20,000 tests, it is possible to make this number even
-        int i, j, k, l, m, n, i1, j1; // higher but time is factor, could even test 65536 tests.
-        i = rand() % 4 + 1;           // it is even possible to store the sequence number in an array and
-        j = rand() % 4 + 1;           // run all possible scenarios, but it is wasteful.
-        k = rand() % 4 + 1;
-        l = rand() % 4 + 1;
-        m = rand() % 4 + 1;
-        n = rand() % 4 + 1;
-        i1 = rand() % 4 + 1;
-        j1 = rand() % 4 + 1;
+    for (int i = 0; i < 20000; ++i) {     // testing 20,000 tests, it is possible to make this number even
+                                          // higher but time is factor, could even test 65536 tests.
+        int a = rand() % 4 + 1;           // it is even possible to store the sequence number in an array and
+        int b = rand() % 4 + 1;           // run all possible scenarios, but it is wasteful.
+        int c = rand() % 4 + 1;
+        int d = rand() % 4 + 1;
+        int e = rand() % 4 + 1;
+        int f = rand() % 4 + 1;
+        int g = rand() % 4 + 1;
+        int h = rand() % 4 + 1;
+
         // take random number,  1 <= i <= 4
         string str =
-                to_string(i) + to_string(j) + to_string(k) + to_string(l) + to_string(m) +
-                to_string(n) + to_string(i1) + to_string(j1);
+                to_string(a) + to_string(b) + to_string(c) + to_string(d) + to_string(e) +
+                to_string(f) + to_string(g) + to_string(h);
         // Build the string to hold the 8 number seq
         int num = stoi(str);
         // Cast string to int to be input
 
-        string arr_hat[4] = {STRAW_HAT, MEXICAN_HAT, FEZ, RUSSIAN_HAT};
-        string arr_nose[4] ={NORMAL, DOT_NOSE, LINE, NONE};
-        string arr_eyes[4] ={DOT_EYE, BIGGER_DOT, BIGGEST_DOT, CLOSED};
-        string arr_left_arm[4] = {NORMAL_LEFT_ARM, UPWARDS_LEFT_ARM, DOWNWARDS_LEFT_ARM, NONE_ARM};
-        string arr_right_arm[4] = {NORMAL_RIGHT_ARM, UPWARDS_RIGHT_ARM, DOWNWARDS_RIGHT_ARM, NONE_ARM};
-        string arr_torso[4] = {BUTTONS, VEST, INWARD_ARMS, NONE_TORSO_AND_BASE};
-        string arr_base[4] = {BUTTONS, FEET, FLAT, NONE_TORSO_AND_BASE};
+        std::array<string, 4> arr_hat {STRAW_HAT, MEXICAN_HAT, FEZ, RUSSIAN_HAT};
+        std::array<string, 4> arr_nose {NORMAL, DOT_NOSE, LINE, NONE};
+        std::array<string, 4> arr_eyes {DOT_EYE, BIGGER_DOT, BIGGEST_DOT, CLOSED};
+        std::array<string, 4> arr_left_arm {NORMAL_LEFT_ARM, UPWARDS_LEFT_ARM, DOWNWARDS_LEFT_ARM, NONE_ARM};
+        std::array<string, 4> arr_right_arm {NORMAL_RIGHT_ARM, UPWARDS_RIGHT_ARM, DOWNWARDS_RIGHT_ARM, NONE_ARM};
+        std::array<string, 4> arr_torso {BUTTONS, VEST, INWARD_ARMS, NONE_TORSO_AND_BASE};
+        std::array<string, 4> arr_base {BUTTONS, FEET, FLAT, NONE_TORSO_AND_BASE};
         // init the arrays
 
-        string hat = arr_hat[i-1];
-        string nose = arr_nose[j-1];
-        string leftEye = arr_eyes[k-1];
-        string rightEye = arr_eyes[l-1];
-        string leftArm = arr_left_arm[m-1];
-        string rightArm = arr_right_arm[n-1];
-        string torso = arr_torso[i1-1];
-        string base = arr_base[j1-1];
+        string hat = arr_hat.at(a-1);
+        string nose = arr_nose.at(b-1);
+        string leftEye = arr_eyes.at(c-1);
+        string rightEye = arr_eyes.at(d-1);
+        string leftArm = arr_left_arm.at(e-1);
+        string rightArm = arr_right_arm.at(f-1);
+        string torso = arr_torso.at(g-1);
+        string base = arr_base.at(h-1);
         //init all vars
 
+        // this is very important, there could be 4 possible out comes for the snowman:
+        // both hands up, left up right down, left down right up, both down.
+        // it is needed to check those scenarios to see which pattern is needed to be printed.
         if ((leftArm == UPWARDS_LEFT_ARM || leftArm == NONE_ARM) &&
-            (rightArm == UPWARDS_RIGHT_ARM || rightArm == NONE_ARM)) {
-            string checkString = hat += rightArm += "(" +
-                                                    rightEye += nose +=
-                                 leftEye + ")" +=
-                                 leftArm + "\n (" +=
+            (rightArm == UPWARDS_RIGHT_ARM || rightArm == NONE_ARM)) { // check if both up
+            string checkString = hat += leftArm += "(" +
+                                 leftEye += nose +=
+                                 rightEye + ")" +=
+                                 rightArm + "\n (" +=
                                  torso + ") \n" += "(" + base + ")";
                     CHECK(nospaces(snowman(num)) == nospaces(checkString));
-        } else if ((rightArm == UPWARDS_RIGHT_ARM || rightArm == NONE_ARM) &&
-                   (leftArm == DOWNWARDS_LEFT_ARM || leftArm == NORMAL_LEFT_ARM)) {
-            string checkString = hat += rightArm += "(" +
-                                                    rightEye += nose +=
-                                 leftEye + ") " +=
+        } else if ((leftArm == UPWARDS_LEFT_ARM || leftArm == NONE_ARM) &&
+                   (rightArm == DOWNWARDS_RIGHT_ARM || leftArm == NORMAL_RIGHT_ARM)) { // check if left is down and right is up
+            string checkString = hat += leftArm += "(" +
+                                 leftEye += nose +=
+                                 rightEye + ") " +=
                                  "\n (" + torso +=
-                                 ")" + leftArm += "\n(" + base + ")";
+                                 ")" + rightArm += "\n(" + base + ")";
                     CHECK(nospaces(snowman(num)) == nospaces(checkString));
-        } else if ((rightArm == DOWNWARDS_RIGHT_ARM || rightArm == NORMAL_RIGHT_ARM) &&
-                   (leftArm == UPWARDS_LEFT_ARM || leftArm == NONE_ARM)) {
-            string checkString = hat += " (" + rightEye += nose +=
-                                 leftEye + ")" +=
-                                 leftArm + "\n" +=
-                                 rightArm + "(" +=
+        } else if ((leftArm == DOWNWARDS_LEFT_ARM || leftArm == NORMAL_LEFT_ARM) &&
+                   (rightArm == UPWARDS_RIGHT_ARM || rightArm == NONE_ARM)) {// check if right is down and left is up
+            string checkString = hat += " (" + leftEye += nose +=
+                                 rightEye + ")" +=
+                                 rightArm + "\n" +=
+                                 leftArm + "(" +=
                                  torso + ") \n" + "(" += base + ")";
                     CHECK(nospaces(snowman(num)) == nospaces(checkString));
         } else if ((leftArm == DOWNWARDS_LEFT_ARM || leftArm == NORMAL_LEFT_ARM) &&
-                   (rightArm == DOWNWARDS_RIGHT_ARM || rightArm == NORMAL_RIGHT_ARM)) {
-            string checkString = hat += " (" + rightEye += nose +=
-                                 leftEye + ") \n"
-                                 + rightArm +=
+                   (rightArm == DOWNWARDS_RIGHT_ARM || rightArm == NORMAL_RIGHT_ARM)) { // check if both hands down
+            string checkString = hat += " (" + leftEye += nose +=
+                                 rightEye + ") \n"
+                                 + leftArm +=
                                  "(" + torso +=
-                                 ")" + leftArm += "\n(" + base + ")";
+                                 ")" + rightArm += "\n(" + base + ")";
                     CHECK(nospaces(snowman(num)) == nospaces(checkString));
         } // Testing random possibilities
     }
