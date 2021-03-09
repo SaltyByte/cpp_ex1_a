@@ -2,7 +2,7 @@
 
 using namespace std;
 
-namespace ariel {
+namespace ariel { 
     string snowman(int i) {
         return "Hello!";
     }

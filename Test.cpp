@@ -1,5 +1,10 @@
 #include "doctest.h"
 #include "snowman.hpp"
+#include <stdlib.h>
+
+
+using namespace std;
+using namespace ariel;
 
 //Hats
 
@@ -56,10 +61,6 @@ string nospaces(string input) {
     return input;
 }
 
-using namespace std;
-using namespace ariel;
-
-
 TEST_CASE ("Testing throws") {
     CHECK_THROWS(snowman(444444445));
     CHECK_THROWS(snowman(-111111111));
@@ -73,201 +74,90 @@ TEST_CASE ("Testing throws") {
     CHECK_THROWS(snowman(-2));
     CHECK_THROWS(snowman(-555));
     CHECK_THROWS(snowman(555));
+    CHECK_THROWS(snowman(51111111));
+    CHECK_THROWS(snowman(15111111));
+    CHECK_THROWS(snowman(11511111));
+    CHECK_THROWS(snowman(11151111));
+    CHECK_THROWS(snowman(11115111));
+    CHECK_THROWS(snowman(11111511));
+    CHECK_THROWS(snowman(11111151));
+    CHECK_THROWS(snowman(11111115));
+    CHECK_THROWS(snowman(1));
+    CHECK_THROWS(snowman(2));
+    CHECK_THROWS(snowman(3));
 }
 
 
-
 TEST_CASE ("Testing all possible outcomes") {
-    for (int i = 1; i < 5; ++i) {
-        for (int j = 1; j < 5; ++j) {
-            for (int k = 1; k < 5; ++k) {
-                for (int l = 1; l < 5; ++l) {
-                    for (int m = 1; m < 5; ++m) {
-                        for (int n = 1; n < 5; ++n) {
-                            for (int i1 = 1; i1 < 5; ++i1) {
-                                for (int j1 = 1; j1 < 5; ++j1) {
-                                    string str =
-                                            to_string(i) + to_string(j) + to_string(k) + to_string(l) + to_string(m) +
-                                            to_string(n) + to_string(i1) + to_string(j1);
-                                    // Build the string to hold the 8 number seq
-                                    int num = stoi(str);
-                                    // Cast string to int to be input
-                                    string hat;
-                                    string nose;
-                                    string leftEye;
-                                    string rightEye;
-                                    string leftArm;
-                                    string rightArm;
-                                    string torso;
-                                    string base;
-                                    //init all vars
-                                    switch (i) {
-                                        case 1:
-                                            hat = STRAW_HAT;
-                                            break;
-                                        case 2:
-                                            hat = MEXICAN_HAT;
-                                            break;
-                                        case 3:
-                                            hat = FEZ;
-                                            break;
-                                        case 4:
-                                            hat = RUSSIAN_HAT;
-                                            break;
-                                        default:
-                                            exit(1);
-                                    }
-                                    switch (j) {
-                                        case 1:
-                                            nose = NORMAL;
-                                            break;
-                                        case 2:
-                                            nose = DOT_NOSE;
-                                            break;
-                                        case 3:
-                                            nose = LINE;
-                                            break;
-                                        case 4:
-                                            nose = NONE;
-                                            break;
-                                        default:
-                                            exit(1);
-                                    }
-                                    switch (k) {
-                                        case 1:
-                                            leftEye = DOT_EYE;
-                                            break;
-                                        case 2:
-                                            leftEye = BIGGER_DOT;
-                                            break;
-                                        case 3:
-                                            leftEye = BIGGEST_DOT;
-                                            break;
-                                        case 4:
-                                            leftEye = CLOSED;
-                                            break;
-                                        default:
-                                            exit(1);
-                                    }
-                                    switch (l) {
-                                        case 1:
-                                            rightEye = DOT_EYE;
-                                            break;
-                                        case 2:
-                                            rightEye = BIGGER_DOT;
-                                            break;
-                                        case 3:
-                                            rightEye = BIGGEST_DOT;
-                                            break;
-                                        case 4:
-                                            rightEye = CLOSED;
-                                            break;
-                                        default:
-                                            exit(1);
-                                    }
-                                    switch (m) {
-                                        case 1:
-                                            leftArm = NORMAL_LEFT_ARM;
-                                            break;
-                                        case 2:
-                                            leftArm = UPWARDS_LEFT_ARM;
-                                            break;
-                                        case 3:
-                                            leftArm = DOWNWARDS_LEFT_ARM;
-                                            break;
-                                        case 4:
-                                            leftArm = NONE_ARM;
-                                            break;
-                                        default:
-                                            exit(1);
-                                    }
-                                    switch (n) {
-                                        case 1:
-                                            rightArm = NORMAL_RIGHT_ARM;
-                                            break;
-                                        case 2:
-                                            rightArm = UPWARDS_RIGHT_ARM;
-                                            break;
-                                        case 3:
-                                            rightArm = DOWNWARDS_RIGHT_ARM;
-                                            break;
-                                        case 4:
-                                            rightArm = NONE_ARM;
-                                            break;
-                                        default:
-                                            exit(1);
-                                    }
-                                    switch (i1) {
-                                        case 1:
-                                            torso = BUTTONS;
-                                            break;
-                                        case 2:
-                                            torso = VEST;
-                                            break;
-                                        case 3:
-                                            torso = INWARD_ARMS;
-                                            break;
-                                        case 4:
-                                            torso = NONE_TORSO_AND_BASE;
-                                            break;
-                                        default:
-                                            exit(1);
-                                    }
-                                    switch (j1) {
-                                        case 1:
-                                            base = BUTTONS;
-                                            break;
-                                        case 2:
-                                            base = FEET;
-                                            break;
-                                        case 3:
-                                            base = FLAT;
-                                            break;
-                                        case 4:
-                                            base = NONE_TORSO_AND_BASE;
-                                            break;
-                                        default:
-                                            exit(1);
-                                    }
-                                    if ((leftArm == UPWARDS_LEFT_ARM || leftArm == NONE_ARM) &&
-                                        (rightArm == UPWARDS_RIGHT_ARM || rightArm == NONE_ARM)) {
-                                            string checkString = hat += rightArm += "(" +
-                                                                 rightEye += nose +=
-                                                                 leftEye + ")" +=
-                                                                 leftArm + "\n (" +=
-                                                                 torso + ") \n" += "(" + base + ")";
-                                                    CHECK(nospaces(snowman(num)) == nospaces(checkString));
-                                        } else if ((rightArm == UPWARDS_RIGHT_ARM || rightArm == NONE_ARM) &&
-                                                   (leftArm == DOWNWARDS_LEFT_ARM || leftArm == NORMAL_LEFT_ARM)) {
-                                            string checkString = hat += rightArm += "(" +
-                                                                 rightEye += nose +=
-                                                                 leftEye + ") " +=
-                                                                 "\n (" + torso +=
-                                                                 ")" + leftArm += "\n(" + base + ")";
-                                                    CHECK(nospaces(snowman(num))  == nospaces(checkString));
-                                        } else if ((rightArm == DOWNWARDS_RIGHT_ARM || rightArm == NORMAL_RIGHT_ARM) &&
-                                                   (leftArm == UPWARDS_LEFT_ARM || leftArm == NONE_ARM)) {
-                                            string checkString = hat += " (" + rightEye += nose +=
-                                                                 leftEye + ")" +=
-                                                                 leftArm + "\n" +=
-                                                                 rightArm + "(" +=
-                                                                 torso + ") \n" + "(" += base + ")";
-                                                    CHECK(nospaces(snowman(num))  == nospaces(checkString));
-                                    } else if ((leftArm == DOWNWARDS_LEFT_ARM || leftArm == NORMAL_LEFT_ARM) &&
-                                               (rightArm == DOWNWARDS_RIGHT_ARM || rightArm == NORMAL_RIGHT_ARM)) {
-                                        string checkString = hat += " (" + rightEye += nose +=
-                                                             leftEye + ") \n"
-                                                             + rightArm +=
-                                                             "(" + torso +=
-                                                             ")" + leftArm += "\n(" + base + ")";
-                                                    CHECK(nospaces(snowman(num))  == nospaces(checkString));
-                                    } // Checking all possible outcomes of the program
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+    for (int a = 0; a < 20000; ++a) { // testing 20,000 tests, it is possible to make this number even
+        int i, j, k, l, m, n, i1, j1; // higher but time is factor, could even test 65536 tests.
+        i = rand() % 4 + 1;           // it is even possible to store the sequence number in an array and
+        j = rand() % 4 + 1;           // run all possible scenarios, but it is wasteful.
+        k = rand() % 4 + 1;
+        l = rand() % 4 + 1;
+        m = rand() % 4 + 1;
+        n = rand() % 4 + 1;
+        i1 = rand() % 4 + 1;
+        j1 = rand() % 4 + 1;
+        // take random number,  1 <= i <= 4
+        string str =
+                to_string(i) + to_string(j) + to_string(k) + to_string(l) + to_string(m) +
+                to_string(n) + to_string(i1) + to_string(j1);
+        // Build the string to hold the 8 number seq
+        int num = stoi(str);
+        // Cast string to int to be input
+
+        string arr_hat[4] = {STRAW_HAT, MEXICAN_HAT, FEZ, RUSSIAN_HAT};
+        string arr_nose[4] ={NORMAL, DOT_NOSE, LINE, NONE};
+        string arr_eyes[4] ={DOT_EYE, BIGGER_DOT, BIGGEST_DOT, CLOSED};
+        string arr_left_arm[4] = {NORMAL_LEFT_ARM, UPWARDS_LEFT_ARM, DOWNWARDS_LEFT_ARM, NONE_ARM};
+        string arr_right_arm[4] = {NORMAL_RIGHT_ARM, UPWARDS_RIGHT_ARM, DOWNWARDS_RIGHT_ARM, NONE_ARM};
+        string arr_torso[4] = {BUTTONS, VEST, INWARD_ARMS, NONE_TORSO_AND_BASE};
+        string arr_base[4] = {BUTTONS, FEET, FLAT, NONE_TORSO_AND_BASE};
+        // init the arrays
+
+        string hat = arr_hat[i-1];
+        string nose = arr_nose[j-1];
+        string leftEye = arr_eyes[k-1];
+        string rightEye = arr_eyes[l-1];
+        string leftArm = arr_left_arm[m-1];
+        string rightArm = arr_right_arm[n-1];
+        string torso = arr_torso[i1-1];
+        string base = arr_base[j1-1];
+        //init all vars
+
+        if ((leftArm == UPWARDS_LEFT_ARM || leftArm == NONE_ARM) &&
+            (rightArm == UPWARDS_RIGHT_ARM || rightArm == NONE_ARM)) {
+            string checkString = hat += rightArm += "(" +
+                                                    rightEye += nose +=
+                                 leftEye + ")" +=
+                                 leftArm + "\n (" +=
+                                 torso + ") \n" += "(" + base + ")";
+                    CHECK(nospaces(snowman(num)) == nospaces(checkString));
+        } else if ((rightArm == UPWARDS_RIGHT_ARM || rightArm == NONE_ARM) &&
+                   (leftArm == DOWNWARDS_LEFT_ARM || leftArm == NORMAL_LEFT_ARM)) {
+            string checkString = hat += rightArm += "(" +
+                                                    rightEye += nose +=
+                                 leftEye + ") " +=
+                                 "\n (" + torso +=
+                                 ")" + leftArm += "\n(" + base + ")";
+                    CHECK(nospaces(snowman(num)) == nospaces(checkString));
+        } else if ((rightArm == DOWNWARDS_RIGHT_ARM || rightArm == NORMAL_RIGHT_ARM) &&
+                   (leftArm == UPWARDS_LEFT_ARM || leftArm == NONE_ARM)) {
+            string checkString = hat += " (" + rightEye += nose +=
+                                 leftEye + ")" +=
+                                 leftArm + "\n" +=
+                                 rightArm + "(" +=
+                                 torso + ") \n" + "(" += base + ")";
+                    CHECK(nospaces(snowman(num)) == nospaces(checkString));
+        } else if ((leftArm == DOWNWARDS_LEFT_ARM || leftArm == NORMAL_LEFT_ARM) &&
+                   (rightArm == DOWNWARDS_RIGHT_ARM || rightArm == NORMAL_RIGHT_ARM)) {
+            string checkString = hat += " (" + rightEye += nose +=
+                                 leftEye + ") \n"
+                                 + rightArm +=
+                                 "(" + torso +=
+                                 ")" + leftArm += "\n(" + base + ")";
+                    CHECK(nospaces(snowman(num)) == nospaces(checkString));
+        } // Testing random possibilities
     }
 }
