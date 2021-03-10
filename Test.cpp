@@ -63,11 +63,17 @@ string nospaces(string input) {
 
 TEST_CASE ("Testing throws") { // Testing bad inputs
     CHECK_THROWS(snowman(444444445));
-    CHECK_THROWS(snowman(-111111111));
     CHECK_THROWS(snowman(-23232323));
     CHECK_THROWS(snowman(0));
     CHECK_THROWS(snowman(12310123));
     CHECK_THROWS(snowman(-1));
+    CHECK_THROWS(snowman(-11));
+    CHECK_THROWS(snowman(-111));
+    CHECK_THROWS(snowman(-1111));
+    CHECK_THROWS(snowman(-11111));
+    CHECK_THROWS(snowman(-111111));
+    CHECK_THROWS(snowman(-1111111));
+    CHECK_THROWS(snowman(-111111111));
     CHECK_THROWS(snowman(12312310));
     CHECK_THROWS(snowman(01231231));
     CHECK_THROWS(snowman(01231231));
@@ -91,12 +97,18 @@ TEST_CASE ("Testing throws") { // Testing bad inputs
     CHECK_THROWS(snowman(10111111));
     CHECK_THROWS(snowman(01111111));
     CHECK_THROWS(snowman(1));
+    CHECK_THROWS(snowman(11));
+    CHECK_THROWS(snowman(111));
+    CHECK_THROWS(snowman(1111));
+    CHECK_THROWS(snowman(11111));
+    CHECK_THROWS(snowman(111111));
+    CHECK_THROWS(snowman(1111111));
     CHECK_THROWS(snowman(2));
     CHECK_THROWS(snowman(3));
 }
 
-TEST_CASE ("Testing all possible outcomes") {
-    for (int i = 0; i < 20000; ++i) {     // testing 20,000 tests, it is possible to make this number even
+TEST_CASE ("Testing random possible outcomes") {
+    for (int i = 0; i < 20000; ++i) {     // testing 20,000 cases, it is possible to make this number even
                                           // higher but time is factor, could even test 65536 tests.
         int a = rand() % 4 + 1;           // it is even possible to store the sequence number in an array and
         int b = rand() % 4 + 1;           // run all possible scenarios, but it is wasteful.
