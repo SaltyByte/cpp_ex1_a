@@ -106,13 +106,49 @@ TEST_CASE ("Testing throws") { // Testing bad inputs
     CHECK_THROWS(snowman(2));
     CHECK_THROWS(snowman(3));
 }
+TEST_CASE ("Testing good outcomes") {
+    // Testing Hats.
+    CHECK(nospaces(snowman(11111111)) == nospaces("     \n_===_\n (.,.) \n<( : )>\n( : )"));
+    CHECK(nospaces(snowman(21111111)) == nospaces(" ___ \n.....\n (.,.) \n<( : )>\n( : )"));
+    CHECK(nospaces(snowman(31111111)) == nospaces("  _  \n /_\\ \n (.,.) \n<( : )>\n( : )"));
+    CHECK(nospaces(snowman(41111111)) == nospaces(" ___ \n(_*_)\n (.,.) \n<( : )>\n( : )"));
+    // Testing Nose
+    CHECK(nospaces(snowman(12111111)) == nospaces("     \n_===_\n (...) \n<( : )>\n( : )"));
+    CHECK(nospaces(snowman(13111111)) == nospaces("     \n_===_\n (._.) \n<( : )>\n( : )"));
+    CHECK(nospaces(snowman(14111111)) == nospaces("     \n_===_\n (. .) \n<( : )>\n( : )"));
+    // Testing Left Eye
+    CHECK(nospaces(snowman(11211111)) == nospaces("     \n_===_\n (o,.) \n<( : )>\n( : )"));
+    CHECK(nospaces(snowman(11311111)) == nospaces("     \n_===_\n (O,.) \n<( : )>\n( : )"));
+    CHECK(nospaces(snowman(11411111)) == nospaces("     \n_===_\n (-,.) \n<( : )>\n( : )"));
+    // Testing Right Eye
+    CHECK(nospaces(snowman(11121111)) == nospaces("     \n_===_\n (.,o) \n<( : )>\n( : )"));
+    CHECK(nospaces(snowman(11131111)) == nospaces("     \n_===_\n (.,O) \n<( : )>\n( : )"));
+    CHECK(nospaces(snowman(11141111)) == nospaces("     \n_===_\n (.,-) \n<( : )>\n( : )"));
+    // Testing Left Arm
+    CHECK(nospaces(snowman(11112111)) == nospaces("     \n_===_\n\\(.,.) \n ( : )>\n( : )"));
+    CHECK(nospaces(snowman(11113111)) == nospaces("     \n_===_\n (.,.) \n/( : )>\n( : )"));
+    CHECK(nospaces(snowman(11114111)) == nospaces("     \n_===_\n (.,.) \n ( : )>\n( : )"));
+    // Testing Right Arm
+    CHECK(nospaces(snowman(11111211)) == nospaces("     \n_===_\n (.,.)/\n<( : ) \n( : )"));
+    CHECK(nospaces(snowman(11111311)) == nospaces("     \n_===_\n (.,.) \n<( : )\\\n( : )"));
+    CHECK(nospaces(snowman(11111411)) == nospaces("     \n_===_\n (.,.) \n<( : ) \n( : )"));
+    // Testing Torso
+    CHECK(nospaces(snowman(11111121)) == nospaces("     \n_===_\n (.,.) \n<(] [)>\n( : )"));
+    CHECK(nospaces(snowman(11111131)) == nospaces("     \n_===_\n (.,.) \n<(> <)>\n( : )"));
+    CHECK(nospaces(snowman(11111141)) == nospaces("     \n_===_\n (.,.) \n<(   )>\n( : )"));
+    //Testing Base
+    CHECK(nospaces(snowman(11111112)) == nospaces("     \n_===_\n (.,.) \n<( : )>\n(\" \")"));
+    CHECK(nospaces(snowman(11111113)) == nospaces("     \n_===_\n (.,.) \n<( : )>\n(___)"));
+    CHECK(nospaces(snowman(11111114)) == nospaces("     \n_===_\n (.,.) \n<( : )>\n(   )"));
+}
+
 
 TEST_CASE ("Testing random possible outcomes") {
-    for (int i = 0; i < 20000; ++i) {     // testing 20,000 cases, it is possible to make this number even
+    for (int i = 0; i < 1500; ++i) {      // testing 1,500 cases, it is possible to make this number even
                                           // higher but time is factor, could even test 65536 tests.
         int a = rand() % 4 + 1;           // it is even possible to store the sequence number in an array and
         int b = rand() % 4 + 1;           // run all possible scenarios, but it is wasteful.
-        int c = rand() % 4 + 1;
+        int c = rand() % 4 + 1;           // for best results, run with higher cases.
         int d = rand() % 4 + 1;
         int e = rand() % 4 + 1;
         int f = rand() % 4 + 1;
